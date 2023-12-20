@@ -47,6 +47,7 @@ function Leads(){
         extraObject : { message : `Are you sure you want to delete this lead?`, type : CONFIRMATION_MODAL_CLOSE_TYPES.LEAD_DELETE, index}}))
     }
 
+    console.log(leads,"leands")
     return(
         <>
             
