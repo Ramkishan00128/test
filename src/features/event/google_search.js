@@ -71,8 +71,9 @@ const MapSearch = ({ updateFormValue, myfun }) => {
 
   const inputStyle = {
     width: "100%",
-    borderRadius: "10px",
-    padding: "10px",
+    borderRadius: "7px",
+    marginTop: "12px",
+    padding: "11px",
     boxSizing: "border-box",
     border: "1px solid #ccc",
     // Add any additional styles you need

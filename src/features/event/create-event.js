@@ -122,7 +122,11 @@ function CreateEvent() {
             defaultValue=''
             updateFormValue={updateFormValue}
           />
-          <MapSearch updateFormValue={updateFormValue} myfun={myfun} />
+          <label>
+            Address
+            <MapSearch updateFormValue={updateFormValue} myfun={myfun} />
+          </label>
+
           {/* <InputText lable="address1" labelTitle="Address1" defaultValue="" updateFormValue={updateFormValue}/> */}
           {/* <InputText
             lable='address2'
