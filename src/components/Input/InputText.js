@@ -1,15 +1,16 @@
 import { useState } from "react"
+import moment from "moment"
 
 
-function InputText({labelTitle, labelStyle, type, containerStyle, defaultValue, placeholder, updateFormValue,lable,Latitude,Longitude}){
+function InputText({labelTitle, labelStyle, type,Type, containerStyle, defaultValue, placeholder, updateFormValue,lable,Latitude,Longitude}){
 
     const [value, setValue] = useState(defaultValue)
     const [name,setName] = useState()
     const updateInputValue = (e) => {
+        let dataObject=moment(e.target.value)
    
         setValue(e.target.value)
-      
-        updateFormValue({updateType:e.target.name, value : e.target.value})
+        updateFormValue({updateType:e.target.name, value : lable=="from_date"?dataObject.format("DD-MM-YYYY"):e.target.value })
     }
 
     return(
@@ -17,10 +18,10 @@ function InputText({labelTitle, labelStyle, type, containerStyle, defaultValue, 
             <label className="label">
                 <span className={"label-text text-base-content " + labelStyle}>{labelTitle}</span>
             </label>
-            <input readOnly={Latitude&&true||Longitude&&true} defaultValue={defaultValue} name={lable} type={type || "text"} value={Latitude?Latitude:value||Longitude?Longitude:value} placeholder={placeholder || ""} onChange={(e) => updateInputValue(e)} className="input  input-bordered w-full " />
+            <input  defaultValue={defaultValue} name={lable} type={lable=="from_time"&&"time"||lable=="to_time"&&"time"||lable=="from_date"&&"date"} value={Latitude?Latitude:value||Longitude?Longitude:value} placeholder={placeholder || ""} onChange={(e) => updateInputValue(e)} className="input  input-bordered w-full " />
         </div>
     )
 }
 
-
+// readOnly={Latitude&&true||Longitude&&true}
 export default InputText

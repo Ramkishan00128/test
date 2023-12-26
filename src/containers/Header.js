@@ -80,13 +80,13 @@ function Header(){
 
 
                 {/* Notification icon */}
-                <button className="btn btn-ghost ml-4  btn-circle" onClick={() => openNotification()}>
+                {/*<button className="btn btn-ghost ml-4  btn-circle" onClick={() => openNotification()}>
                     <div className="indicator">
                         <BellIcon className="h-6 w-6"/>
                         {noOfNotifications > 0 ? <span className="indicator-item badge badge-secondary badge-sm">{noOfNotifications}</span> : null }
                     </div>
                 </button>
-
+            */}
 
                 {/* Profile icon, opening menu on click */}
                 <div className="dropdown dropdown-end ml-4">
@@ -96,14 +96,14 @@ function Header(){
                         </div>
                     </label>
                     <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-                        <li className="justify-between">
+                        {/*<li className="justify-between">
                         <Link to={'/app/settings-profile'}>
                             Profile Settings
                             <span className="badge">New</span>
                             </Link>
                         </li>
-                        <li className=''><Link to={'/app/settings-billing'}>Bill History</Link></li>
-                        <div className="divider mt-0 mb-0"></div>
+        <li className=''><Link to={'/app/settings-billing'}>Bill History</Link></li>*/}
+                       { /*<div className="divider mt-0 mb-0"></div>*/}
                         <li><a onClick={logoutUser}>Logout</a></li>
                     </ul>
                 </div>

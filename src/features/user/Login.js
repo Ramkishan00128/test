@@ -18,15 +18,15 @@ function Login(){
     const submitForm = (e) =>{
         e.preventDefault()
         setErrorMessage("")
-
+        console.log(loginObj,"loginobjde")
         if(loginObj.emailId.trim() === "")return setErrorMessage("Email Id is required! (use any value)")
         if(loginObj.password.trim() === "")return setErrorMessage("Password is required! (use any value)")
         else{
             setLoading(true)
             // Call API to check user credentials and save token in localstorage
-            localStorage.setItem("token", "DumyTokenHere")
+            localStorage.setItem("token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGNjZDAyYmEzMTQzMzdkNjQ1ZGVkNzMiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MDI5ODc5NTh9.mgiZNFs8vGpmLqMiEgPk3A4c_rCMIzOFpy9SyE1CXwk")
             setLoading(false)
-            window.location.href = '/app/dashboard'
+            window.location.href = '/app/event'
         }
     }
 
@@ -48,9 +48,9 @@ function Login(){
 
                         <div className="mb-4">
 
-                            <InputText type="emailId" defaultValue={loginObj.emailId} updateType="emailId" containerStyle="mt-4" labelTitle="Email Id" updateFormValue={updateFormValue}/>
+                            <InputText lable={"emailId"} type="emailId" defaultValue={loginObj.emailId} updateType="emailId" containerStyle="mt-4" labelTitle="Email Id" updateFormValue={updateFormValue}/>
 
-                            <InputText defaultValue={loginObj.password} type="password" updateType="password" containerStyle="mt-4" labelTitle="Password" updateFormValue={updateFormValue}/>
+                            <InputText lable={"password"} defaultValue={loginObj.password} type="password" updateType="password" containerStyle="mt-4" labelTitle="Password" updateFormValue={updateFormValue}/>
 
                         </div>
 

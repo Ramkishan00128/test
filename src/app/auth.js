@@ -11,7 +11,7 @@ const checkAuth = () => {
     const isPublicPage = PUBLIC_ROUTES.some( r => window.location.href.includes(r))
 
     if(!TOKEN && !isPublicPage){
-        window.location.href = '/app/event'
+        window.location.href = '/login'
         return;
     }else{
         axios.defaults.headers.common['Authorization'] = `Bearer ${TOKEN}`

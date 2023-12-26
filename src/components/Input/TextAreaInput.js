@@ -1,12 +1,12 @@
 import { useState } from "react"
 
 
-function TextAreaInput({labelTitle, labelStyle, type, containerStyle, defaultValue, placeholder, updateFormValue, updateType}){
+function TextAreaInput({labelTitle, labelStyle, type, containerStyle, defaultValue, placeholder, updateFormValue, updateType,lable}){
 
     const [value, setValue] = useState(defaultValue)
 
     const updateInputValue = (e) => {
-        // setValue(val)
+        setValue(e.target.value);
         updateFormValue({updateType:e.target.name, value : e.target.value})
     }
 
@@ -15,7 +15,7 @@ function TextAreaInput({labelTitle, labelStyle, type, containerStyle, defaultVal
             <label className="label">
                 <span className={"label-text text-base-content " + labelStyle}>{labelTitle}</span>
             </label>
-            <textarea value={value} className="textarea textarea-bordered w-full" placeholder={placeholder || ""} onChange={(e) => updateInputValue(e)}></textarea>
+            <textarea value={value} name={lable} className="textarea textarea-bordered w-full" placeholder={placeholder || ""} onChange={(e) => updateInputValue(e)}></textarea>
         </div>
     )
 }

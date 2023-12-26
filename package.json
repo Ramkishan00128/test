@@ -1,7 +1,7 @@
 {
-  "name": "admin-dashboard-template-dashwind",
+  "name": "livewired",
   "version": "1.0.0",
-  "description": "Admin Dashboard template built with create-react-app, tailwind css and daisy UI. Template uses rich tailwind css utility classes and have components of daisy UI, also have redux toolkit implemented for store management.",
+  "description": "LiveWired",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.0.13",
+    "@react-google-maps/api": "^2.19.2",
     "@reduxjs/toolkit": "^1.9.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -23,6 +24,7 @@
     "react-chartjs-2": "^5.0.1",
     "react-datepicker": "^4.25.0",
     "react-dom": "^18.2.0",
+    "react-google-autocomplete": "^2.7.3",
     "react-notifications": "^1.7.4",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.4.3",
@@ -42,8 +44,7 @@
     "react-router",
     "react-charts"
   ],
-  "author": "srobbin01",
-  "license": "ISC",
+  "author": "ramkishan",
   "homepage": "",
   "eslintConfig": {
     "extends": [

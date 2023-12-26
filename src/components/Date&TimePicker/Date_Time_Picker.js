@@ -1,8 +1,9 @@
-import { forwardRef, useState, useCallback } from "react";
+import { forwardRef, useState, useCallback, useEffect } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import BiCalendar from '@heroicons/react/24/outline/CalendarIcon'
 import BiTime from '@heroicons/react/24/outline/ClockIcon'
+import moment from "moment";
 
 
 function DatePicker1(props) {
@@ -397,7 +398,7 @@ function DatepickerPresentationGroup({ caption, children }) {
     </div>
   );
 }
-function DatePicker1Presentation({Property}) {
+function DatePicker1Presentation({Property,Name,setGetData,Lable}) {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(null);
   const onRangeChange = useCallback(
@@ -408,8 +409,19 @@ function DatePicker1Presentation({Property}) {
     },
     [setStartDate, setEndDate]
   );
+
+  const dateObject = moment(startDate);
+  useEffect(()=>{
+    setGetData((prevAddress) => ({
+    ...prevAddress,
+    [Lable]:Lable=="from_date"?dateObject.format('DD-MM-YYYY'):dateObject.format('HH:mm'),
+    timing:`${Lable=="from_time"?`${moment(prevAddress.from_date).format('MMM DD')} {dateObject.format( 'h:mm A')}`:`${dateObject.format(prevAddress.from_date)} ${prevAddress.from_time}`} – ${Lable=="to_time"&&dateObject.format('MMM DD, h:mm A')}`
+  }));
+  },[startDate])
+
+
   return (
-    <div className="flex flex-col gap-8 bg-white p-5 sm:p-10 w-full rounded-md">
+    <div className="flex flex-col  bg-white p-2  w-full rounded-md">
         {
             Property=="date"?( 
     <DatepickerPresentationGroup caption="Date">
@@ -421,7 +433,7 @@ function DatePicker1Presentation({Property}) {
           popperPlacement="bottom"
         />
       </DatepickerPresentationGroup>):(
-        <DatepickerPresentationGroup caption="Date picker with time selection">
+      <DatepickerPresentationGroup caption={Name=="from_time"?"From Time":"To Time"}>
         <DatePicker1
           selected={startDate}
           onChange={setStartDate}
@@ -429,7 +441,8 @@ function DatePicker1Presentation({Property}) {
           startDate={startDate}
           popperPlacement="bottom"
           showTimeSelect
-          dateFormat="MMMM d, yyyy h:mm aa"
+          showTimeSelectOnly
+          dateFormat="h:mm aa"
         />
       </DatepickerPresentationGroup>
       )

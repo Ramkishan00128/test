@@ -3,34 +3,38 @@ import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import TitleCard from "../../components/Cards/TitleCard"
 import { openModal } from "../common/modalSlice"
-import { deleteLead, getLeadsContent } from "./leadSlice"
+import {  getEventContent } from "./leadSlice"
 import { CONFIRMATION_MODAL_CLOSE_TYPES, MODAL_BODY_TYPES } from '../../utils/globalConstantUtil'
-import TrashIcon from '@heroicons/react/24/outline/TrashIcon'
+import {MapPinIcon,TrashIcon} from '@heroicons/react/24/outline'
 import { showNotification } from '../common/headerSlice'
+import axios from "axios"
+import { Link } from "react-router-dom"
 
 const TopSideButtons = () => {
 
     const dispatch = useDispatch()
 
-    const openAddNewLeadModal = () => {
-        dispatch(openModal({title : "Add New Lead", bodyType : MODAL_BODY_TYPES.LEAD_ADD_NEW}))
-    }
+    // const openAddNewLeadModal = () => {
+    //     dispatch(openModal({title : "Add New Lead", bodyType : MODAL_BODY_TYPES.LEAD_ADD_NEW}))
+    // }
 
     return(
         <div className="inline-block float-right">
-            <button className="btn px-6 btn-sm normal-case btn-primary" onClick={() => openAddNewLeadModal()}>Add New</button>
+          
+            <Link className="btn px-6 btn-sm normal-case btn-primary" to="/app/create-event">Add Event</Link>
         </div>
     )
 }
 
 function Leads(){
 
-    const {leads } = useSelector(state => state.lead)
+    const allEvent  = useSelector(state => state.event.event)
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(getLeadsContent())
+        dispatch(getEventContent())
     }, [])
+
 
     
 
@@ -47,48 +51,70 @@ function Leads(){
         extraObject : { message : `Are you sure you want to delete this lead?`, type : CONFIRMATION_MODAL_CLOSE_TYPES.LEAD_DELETE, index}}))
     }
 
-    console.log(leads,"leands")
+    const GetAllEvent=async()=>{
+        try {
+            const response = await axios.get('/get_all_events',{
+                headers:{
+                    // 'Authorization':`Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                }
+            })
+    
+          const res = response.data
+          console.log(res,"get all event")
+        //   return response.data
+     
+        } catch (error) {
+          console.error('Error creating event:', error);
+        }
+    }
+
+   
+
     return(
         <>
             
-            <TitleCard title="Current Leads" topMargin="mt-2" TopSideButtons={<TopSideButtons />}>
+            <TitleCard title="All Events" topMargin="mt-2" TopSideButtons={<TopSideButtons />}>
 
                 {/* Leads List in table format loaded from slice after api call */}
             <div className="overflow-x-auto w-full">
                 <table className="table w-full">
                     <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Email Id</th>
-                        <th>Created At</th>
-                        <th>Status</th>
-                        <th>Assigned To</th>
-                        <th></th>
+                        <th>Avatar</th>
+                        <th>Event Date</th>
+                        <th>Description</th>
+                        <th>Location</th>
+                        <th>Delete</th>
                     </tr>
                     </thead>
                     <tbody>
                         {
-                            leads.map((l, k) => {
+                            allEvent.events?.map((data,i) => {
                                 return(
-                                    <tr key={k}>
+                                    <tr key={i}>
                                     <td>
                                         <div className="flex items-center space-x-3">
                                             <div className="avatar">
                                                 <div className="mask mask-squircle w-12 h-12">
-                                                    <img src={l.avatar} alt="Avatar" />
+                                                    <img src={data?.image} alt="Avatar" />
                                                 </div>
                                             </div>
                                             <div>
-                                                <div className="font-bold">{l.first_name}</div>
-                                                <div className="text-sm opacity-50">{l.last_name}</div>
+                                                <div className="font-bold">{data?.title}</div>
+                                               <div className="text-sm opacity-50">{data?.address1}</div>
                                             </div>
                                         </div>
                                     </td>
-                                    <td>{l.email}</td>
-                                    <td>{moment(new Date()).add(-5*(k+2), 'days').format("DD MMM YY")}</td>
+                                    
+                                    <td>{data?.timing}</td>
+                                    <td>{data?.description}</td>
+                                    <td className="text-xs"><Link><MapPinIcon  className="text-xl text-red-500" style={{ fontSize: '0.1rem' }} /></Link></td>
+                                    <td><TrashIcon/></td>
+                                    {/*<td>{moment(new Date()).add(-5*(k+2), 'days').format("DD MMM YY")}</td>
                                     <td>{getDummyStatus(k)}</td>
                                     <td>{l.last_name}</td>
-                                    <td><button className="btn btn-square btn-ghost" onClick={() => deleteCurrentLead(k)}><TrashIcon className="w-5"/></button></td>
+                                <td><button className="btn btn-square btn-ghost" onClick={() => deleteCurrentLead(k)}><TrashIcon className="w-5"/></button></td>*/}
                                     </tr>
                                 )
                             })

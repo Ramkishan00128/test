@@ -30,16 +30,16 @@ const routes = [
   //   icon: <Squares2X2Icon className={iconClasses}/>, 
   //   name: 'Dashboard',
   // },
-  {
-    path: '/app/event', // url
-    icon: <Calendary className={iconClasses}/>, // icon component
-    name: 'Event', 
-  },
   // {
-  //   path: '/app/leads', // url
-  //   icon: <InboxArrowDownIcon className={iconClasses}/>, // icon component
-  //   name: 'Leads', // name that appear in Sidebar
+  //   path: '/app/event', // url
+  //   icon: <Calendary className={iconClasses}/>, // icon component
+  //   name: 'Event', 
   // },
+  {
+    path: '/app/events', // url
+    icon: <InboxArrowDownIcon className={iconClasses}/>, // icon component
+    name: 'Events', // name that appear in Sidebar
+  },
   // {
   //   path: '/app/transactions', // url
   //   icon: <CurrencyDollarIcon className={iconClasses}/>, // icon component
