@@ -111,7 +111,20 @@ function CreateEvent() {
       [updateType]: value,
     }));
   };
+  const myfun1 = (updateType, value) => {
+    setGetData((prevAddress) => ({
+      ...prevAddress,
+      [updateType]: value,
+    }));
+  };
+  const myfun2 = (updateType, value) => {
+    setGetData((prevAddress) => ({
+      ...prevAddress,
+      [updateType]: value,
+    }));
+  };
 
+  console.log(getData, "getData");
   return (
     <>
       <TitleCard title='Create Event' topMargin='mt-2'>
@@ -124,7 +137,12 @@ function CreateEvent() {
           />
           <label>
             Address
-            <MapSearch updateFormValue={updateFormValue} myfun={myfun} />
+            <MapSearch
+              updateFormValue={updateFormValue}
+              myfun={myfun}
+              myfun1={myfun1}
+              myfun2={myfun2}
+            />
           </label>
 
           {/* <InputText lable="address1" labelTitle="Address1" defaultValue="" updateFormValue={updateFormValue}/> */}
@@ -134,18 +152,18 @@ function CreateEvent() {
             defaultValue=''
             updateFormValue={updateFormValue}
           /> */}
-          <div className='mt-16'>
+          {/* <div className='mt-16'>
             <button
               className='btn btn-primary float-right'
               onClick={() => handleSearch()}
             >
               Get Coordinate
             </button>
-          </div>
+          </div> */}
         </div>
         <div className='divider'></div>
         <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
-          <InputText
+          {/* <InputText
             lable='lat'
             labelTitle='Latitude'
             defaultValue=''
@@ -158,7 +176,7 @@ function CreateEvent() {
             defaultValue=''
             updateFormValue={updateFormValue}
             Longitude={coordinates?.longitude}
-          />
+          /> */}
           <InputText
             lable='title'
             labelTitle='Title'

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { LoadScript, StandaloneSearchBox } from "@react-google-maps/api";
 
-const MapSearch = ({ updateFormValue, myfun }) => {
+const MapSearch = ({ updateFormValue, myfun, myfun1, myfun2 }) => {
   const inputRef = useRef();
   const [addressFields, setAddressFields] = useState(null);
   const [guestCoordinates, setGuestCoordinates] = useState(null);
@@ -51,12 +51,16 @@ const MapSearch = ({ updateFormValue, myfun }) => {
 
       //   updateFormValue("address1", place.formatted_address);
       myfun("address1", place.formatted_address);
+      myfun1("lat", place.geometry.location.lat());
+      myfun2("long", place.geometry.location.lng());
 
       // Log the selected value with full address and zip code to the console
       console.log("Selected Place:", {
         name: place.name,
         fullAddress: place.formatted_address,
         zipCode: data.zip_code,
+        lattitude: place.geometry.location.lat(),
+        longitude: place.geometry.location.lng(),
       });
     }
   };
